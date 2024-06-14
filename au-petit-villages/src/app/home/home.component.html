@@ -1,0 +1,20 @@
+<app-header></app-header>
+<div class="home-container">
+  <h1>Bienvenue chez Au petit village</h1>
+  <p>Découvrez nos figurines faites main inspirées d'Astérix & Obélix</p>
+  <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher une figurine">
+  <select [(ngModel)]="sortOrder">
+    <option value="asc">Prix croissant</option>
+    <option value="desc">Prix décroissant</option>
+  </select>
+  <div class="product-list">
+    <div *ngFor="let product of (products | filterByName: searchTerm | sortByPrice: sortOrder)">
+      <h2>{{ product.name }}</h2>
+      <p>{{ product.description }}</p>
+      <p>Prix : {{ product.price }}€</p>
+      <a [routerLink]="['/product', product.id]">Voir le produit</a>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
